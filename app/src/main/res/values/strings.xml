@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">CompositionGame</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="welcome_title">Состав числа</string>
+    <string name="welcome_text"> Привет всем </string>
+    <string name="welcome_rules">Правила игры: вылдао \nПример: вдыа выла</string>
+    <string name="welcome_ok">Понятно</string>
+    <string name="welcome_icon">welcome_icon</string>
 </resources>
