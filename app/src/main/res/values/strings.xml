@@ -7,4 +7,5 @@
     <string name="welcome_rules">Правила игры: вылдао \nПример: вдыа выла</string>
     <string name="welcome_ok">Понятно</string>
     <string name="welcome_icon">welcome_icon</string>
+    <string name="question_count_right_answers">Правильных ответов: %s из %s</string>
 </resources>
