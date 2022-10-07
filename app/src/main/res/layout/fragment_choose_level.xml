@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="24dp"
+    android:orientation="vertical"
+    tools:context=".presentation.ChoseLevelFragment">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="Choose game level"
+        android:textSize="26sp" />
+
+    <Button
+        style="@style/LevelButtons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="test" />
+
+    <Button
+        style="@style/LevelButtons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@android:color/holo_green_dark"
+        android:text="easy" />
+
+    <Button
+        style="@style/LevelButtons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@android:color/holo_orange_light"
+        android:text="normal" />
+
+    <Button
+        style="@style/LevelButtons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@android:color/holo_red_dark"
+        android:text="hard" />
+
+</LinearLayout>
