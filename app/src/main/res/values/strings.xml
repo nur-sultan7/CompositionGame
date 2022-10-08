@@ -14,4 +14,9 @@
     <string name="required_right_answers_percent">Необходимый процент правильных ответов: %s</string>
     <string name="percent_of_right_answers">Ваш процент: %s</string>
     <string name="game_result_emoji">game result emoji</string>
+    <string name="choose_game_level">Choose game level</string>
+    <string name="game_level_test">test</string>
+    <string name="game_level_easy">easy</string>
+    <string name="game_level_normal">normal</string>
+    <string name="game_level_hard">hard</string>
 </resources>

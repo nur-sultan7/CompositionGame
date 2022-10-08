@@ -11,34 +11,34 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:text="Choose game level"
+        android:text="@string/choose_game_level"
         android:textSize="26sp" />
 
     <Button
         style="@style/LevelButtons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="test" />
+        android:text="@string/game_level_test" />
 
     <Button
         style="@style/LevelButtons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="@android:color/holo_green_dark"
-        android:text="easy" />
+        android:text="@string/game_level_easy" />
 
     <Button
         style="@style/LevelButtons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="@android:color/holo_orange_light"
-        android:text="normal" />
+        android:text="@string/game_level_normal" />
 
     <Button
         style="@style/LevelButtons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="@android:color/holo_red_dark"
-        android:text="hard" />
+        android:text="@string/game_level_hard" />
 
 </LinearLayout>
