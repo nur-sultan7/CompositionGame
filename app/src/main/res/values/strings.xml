@@ -8,4 +8,10 @@
     <string name="welcome_ok">Понятно</string>
     <string name="welcome_icon">welcome_icon</string>
     <string name="question_count_right_answers">Правильных ответов: %s из %s</string>
+    <string name="game_result_retry">Попробовать снова</string>
+    <string name="required_right_answers">Необходимое количество правильных ответов: %s</string>
+    <string name="count_of_right_answers">Ваш счет: %s</string>
+    <string name="required_right_answers_percent">Необходимый процент правильных ответов: %s</string>
+    <string name="percent_of_right_answers">Ваш процент: %s</string>
+    <string name="game_result_emoji">game result emoji</string>
 </resources>
