@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:layout_marginTop="24dp"
     android:orientation="vertical"
-    tools:context=".presentation.ChoseLevelFragment">
+    tools:context=".presentation.ChooseLevelFragment">
 
     <TextView
         android:layout_width="match_parent"
@@ -15,12 +15,14 @@
         android:textSize="26sp" />
 
     <Button
+        android:id="@+id/level_test"
         style="@style/LevelButtons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/game_level_test" />
 
     <Button
+        android:id="@+id/level_easy"
         style="@style/LevelButtons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -28,6 +30,7 @@
         android:text="@string/game_level_easy" />
 
     <Button
+        android:id="@+id/level_normal"
         style="@style/LevelButtons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -35,6 +38,7 @@
         android:text="@string/game_level_normal" />
 
     <Button
+        android:id="@+id/level_hard"
         style="@style/LevelButtons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
