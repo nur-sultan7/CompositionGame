@@ -5,7 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.compositiongame.R
 import com.example.compositiongame.databinding.FragmentChooseLevelBinding
+import com.example.compositiongame.domain.entiteis.Level
 
 
 class ChooseLevelFragment : Fragment() {
@@ -24,11 +26,36 @@ class ChooseLevelFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.levelEasy.setOnClickListener { }
+        binding.levelTest.setOnClickListener {
+            launchGameFragment(Level.TEST)
+        }
+        binding.levelEasy.setOnClickListener {
+            launchGameFragment(Level.EASY)
+        }
+        binding.levelNormal.setOnClickListener {
+            launchGameFragment(Level.NORMAL)
+        }
+        binding.levelHard.setOnClickListener {
+            launchGameFragment(Level.HARD)
+        }
+    }
+
+    private fun launchGameFragment(level: Level) {
+        requireActivity().supportFragmentManager.beginTransaction()
+            .replace(R.id.main_container, GameFragment.newInstance(level))
+            .addToBackStack(GameFragment.NAME)
+            .commit()
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    companion object {
+        const val NAME = "ChooseLevelFragment"
+        fun newInstance(): ChooseLevelFragment {
+            return ChooseLevelFragment()
+        }
     }
 }
