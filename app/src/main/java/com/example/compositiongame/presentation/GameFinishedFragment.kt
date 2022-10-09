@@ -47,13 +47,12 @@ class GameFinishedFragment : Fragment() {
         _binding = null
     }
 
-    @RequiresApi(33)
     private fun parseArgs() {
-        gameResult = requireArguments().getSerializable(KEY_GAME_RESULT, GameResult::class.java)
-            ?: throw RuntimeException("Game result is null")
+        requireArguments().getParcelable<GameResult>(KEY_GAME_RESULT)?.let {
+            gameResult = it
+        }
     }
 
-    @RequiresApi(33)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         parseArgs()
@@ -73,7 +72,7 @@ class GameFinishedFragment : Fragment() {
         fun newInstance(gameResult: GameResult): GameFinishedFragment {
             return GameFinishedFragment().apply {
                 arguments = Bundle().apply {
-                    putSerializable(KEY_GAME_RESULT, gameResult)
+                    putParcelable(KEY_GAME_RESULT, gameResult)
                 }
             }
         }
