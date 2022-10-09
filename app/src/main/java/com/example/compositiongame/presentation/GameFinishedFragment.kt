@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import com.example.compositiongame.databinding.FragmentGameFinishedBinding
 import com.example.compositiongame.domain.entiteis.GameResult
 
@@ -63,7 +64,7 @@ class GameFinishedFragment : Fragment() {
         requireActivity().supportFragmentManager
             .popBackStack(
                 GameFragment.NAME,
-                1
+                FragmentManager.POP_BACK_STACK_INCLUSIVE
             )
     }
 
