@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import com.example.compositiongame.databinding.FragmentGameFinishedBinding
 import com.example.compositiongame.domain.entiteis.GameResult
@@ -45,10 +46,13 @@ class GameFinishedFragment : Fragment() {
         _binding = null
     }
 
+    @RequiresApi(33)
     private fun parseArgs() {
-        gameResult = requireArguments().getSerializable(KEY_GAME_RESULT) as GameResult
+        gameResult = requireArguments().getSerializable(KEY_GAME_RESULT, GameResult::class.java)
+            ?: throw RuntimeException("Game result is null")
     }
 
+    @RequiresApi(33)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         parseArgs()

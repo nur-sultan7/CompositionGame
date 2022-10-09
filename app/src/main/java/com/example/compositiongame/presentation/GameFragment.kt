@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import com.example.compositiongame.R
 import com.example.compositiongame.databinding.FragmentGameBinding
@@ -19,6 +20,7 @@ class GameFragment : Fragment() {
     private val binding: FragmentGameBinding
         get() = _binding ?: throw RuntimeException("FragmentGameBinding is null")
 
+    @RequiresApi(33)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         parseArguments()
@@ -65,8 +67,10 @@ class GameFragment : Fragment() {
             .commit()
     }
 
+    @RequiresApi(33)
     private fun parseArguments() {
-        level = requireArguments().getSerializable(KEY_LEVEL) as Level
+        level = requireArguments().getSerializable(KEY_LEVEL, Level::class.java)
+            ?: throw RuntimeException("Level is null")
     }
 
     companion object {
