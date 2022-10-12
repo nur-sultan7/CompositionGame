@@ -34,10 +34,6 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
     val question: LiveData<Question>
         get() = _question
 
-    private var _gameIsFinished = MutableLiveData<Boolean>()
-    val gameIsFinished: LiveData<Boolean>
-        get() = _gameIsFinished
-
     private var _resultOfAnswers = MutableLiveData<String>()
     val resultOfAnswers: LiveData<String>
         get() = _resultOfAnswers
@@ -126,7 +122,6 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
 
             override fun onFinish() {
                 finishGame()
-                _gameIsFinished.value = true
             }
 
         }
