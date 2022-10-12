@@ -19,4 +19,5 @@
     <string name="game_level_easy">easy</string>
     <string name="game_level_normal">normal</string>
     <string name="game_level_hard">hard</string>
+    <string name="question_unknown">\?</string>
 </resources>
