@@ -28,15 +28,17 @@ class GameFragment : Fragment() {
             ViewModelProvider.AndroidViewModelFactory(requireActivity().application)
         )[GameViewModel::class.java]
     }
-    private val tvOptionsList = mutableListOf<TextView>().apply {
-       with(binding){
-           add(questionTvOption1)
-           add(questionTvOption2)
-           add(questionTvOption3)
-           add(questionTvOption4)
-           add(questionTvOption5)
-           add(questionTvOption6)
-       }
+    private val tvOptionsList: MutableList<TextView> by lazy {
+        mutableListOf<TextView>().apply {
+            with(binding) {
+                add(questionTvOption1)
+                add(questionTvOption2)
+                add(questionTvOption3)
+                add(questionTvOption4)
+                add(questionTvOption5)
+                add(questionTvOption6)
+            }
+        }
     }
 
     @RequiresApi(33)
@@ -135,8 +137,7 @@ class GameFragment : Fragment() {
 
     @RequiresApi(33)
     private fun parseArguments() {
-        level = requireArguments().getSerializable(KEY_LEVEL, Level::class.java)
-            ?: throw RuntimeException("Level is null")
+        level = requireArguments().getSerializable(KEY_LEVEL) as Level
     }
 
     companion object {

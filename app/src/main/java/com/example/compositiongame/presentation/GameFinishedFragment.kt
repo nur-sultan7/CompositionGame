@@ -48,8 +48,7 @@ class GameFinishedFragment : Fragment() {
 
     @RequiresApi(33)
     private fun parseArgs() {
-        gameResult = requireArguments().getSerializable(KEY_GAME_RESULT, GameResult::class.java)
-            ?: throw RuntimeException("Game result is null")
+        gameResult = requireArguments().getSerializable(KEY_GAME_RESULT) as GameResult
     }
 
     @RequiresApi(33)
