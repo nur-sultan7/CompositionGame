@@ -132,6 +132,7 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
         _gameResult.value = GameResult(
             enoughPercent.value == true && enoughRightAnswers.value == true,
             countOfRightAnswers,
+            percentOfRightAnswers.value ?: 0,
             countOfAnswers,
             gameSettings
         )
