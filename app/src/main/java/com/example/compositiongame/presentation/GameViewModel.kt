@@ -5,6 +5,7 @@ import android.os.CountDownTimer
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.example.compositiongame.R
 import com.example.compositiongame.data.GameRepositoryImp
 import com.example.compositiongame.domain.entiteis.GameResult
@@ -14,11 +15,9 @@ import com.example.compositiongame.domain.entiteis.Question
 import com.example.compositiongame.domain.usecases.GenerateQuestionUseCase
 import com.example.compositiongame.domain.usecases.GetGameSettingsUseCase
 
-class GameViewModel(application: Application) : AndroidViewModel(application) {
+class GameViewModel(private val level: Level, private val application: Application) : ViewModel() {
 
     private lateinit var gameSettings: GameSettings
-    private lateinit var level: Level
-    private val context = application
     private var countOfRightAnswers = 0
     private var countOfAnswers = 0
     private val repository = GameRepositoryImp
@@ -58,8 +57,7 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
     val gameResult: LiveData<GameResult>
         get() = _gameResult
 
-    fun startGame(level: Level) {
-        this.level = level
+    init {
         getGameSettings()
         startTimer(gameSettings.gameTimeInSeconds)
         generateQuestion()
@@ -76,7 +74,7 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     private fun updateResult() {
-        _resultOfAnswers.value = context.getString(
+        _resultOfAnswers.value = application.getString(
             R.string.question_count_right_answers,
             countOfRightAnswers,
             gameSettings.minCountOfRightAnswers
