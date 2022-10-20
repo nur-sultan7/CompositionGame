@@ -103,10 +103,8 @@ class GameFragment : Fragment() {
     }
 
     private fun setOnClickListeners() {
-        with(binding) {
-            for (optionIndex in 0 until tvOptionsList.size) tvOptionsList[optionIndex].setOnClickListener {
-                setOnOptionClick(it)
-            }
+        for (optionIndex in 0 until tvOptionsList.size) tvOptionsList[optionIndex].setOnClickListener {
+            setOnOptionClick(it)
         }
     }
 
@@ -128,7 +126,7 @@ class GameFragment : Fragment() {
 
     @RequiresApi(33)
     private fun parseArguments() {
-        level = requireArguments().getSerializable(KEY_LEVEL) as Level
+        level = requireArguments().getParcelable<Level>(KEY_LEVEL) as Level
     }
 
     companion object {
@@ -138,7 +136,7 @@ class GameFragment : Fragment() {
         fun newInstance(level: Level): GameFragment {
             return GameFragment().apply {
                 arguments = Bundle().apply {
-                    putSerializable(KEY_LEVEL, level)
+                    putParcelable(KEY_LEVEL, level)
                 }
             }
         }
