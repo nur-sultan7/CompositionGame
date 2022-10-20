@@ -28,6 +28,16 @@ class GameFragment : Fragment() {
             ViewModelProvider.AndroidViewModelFactory(requireActivity().application)
         )[GameViewModel::class.java]
     }
+    private val tvOptionsList = mutableListOf<TextView>().apply {
+       with(binding){
+           add(questionTvOption1)
+           add(questionTvOption2)
+           add(questionTvOption3)
+           add(questionTvOption4)
+           add(questionTvOption5)
+           add(questionTvOption6)
+       }
+    }
 
     @RequiresApi(33)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,12 +56,12 @@ class GameFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.startGame(level)
-        setObservers()
+        setViewModelObservers()
         setOnClickListeners()
 
     }
 
-    private fun setObservers() {
+    private fun setViewModelObservers() {
         with(binding) {
             with(viewModel) {
                 timerTime.observe(viewLifecycleOwner) {
@@ -71,12 +81,8 @@ class GameFragment : Fragment() {
                 question.observe(viewLifecycleOwner) {
                     tvVisibleNumber.text = it.visibleNumber.toString()
                     tvQuestionSum.text = it.sum.toString()
-                    questionTvOption1.text = it.options[0].toString()
-                    questionTvOption2.text = it.options[1].toString()
-                    questionTvOption3.text = it.options[2].toString()
-                    questionTvOption4.text = it.options[3].toString()
-                    questionTvOption5.text = it.options[4].toString()
-                    questionTvOption6.text = it.options[5].toString()
+                    for(optionIndex in 0 until tvOptionsList.size)
+                        tvOptionsList[optionIndex].text = it.options[optionIndex].toString()
                 }
                 enoughRightAnswers.observe(viewLifecycleOwner) {
                     if (it)
@@ -101,12 +107,10 @@ class GameFragment : Fragment() {
 
     private fun setOnClickListeners() {
         with(binding) {
-            questionTvOption1.setOnClickListener { setOnOptionClick(it) }
-            questionTvOption2.setOnClickListener { setOnOptionClick(it) }
-            questionTvOption3.setOnClickListener { setOnOptionClick(it) }
-            questionTvOption4.setOnClickListener { setOnOptionClick(it) }
-            questionTvOption5.setOnClickListener { setOnOptionClick(it) }
-            questionTvOption6.setOnClickListener { setOnOptionClick(it) }
+            for (optionIndex in 0 until tvOptionsList.size)
+                tvOptionsList[optionIndex].setOnClickListener {
+                    setOnOptionClick(it)
+                }
         }
     }
 
