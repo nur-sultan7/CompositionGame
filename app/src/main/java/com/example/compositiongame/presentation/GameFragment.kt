@@ -17,15 +17,16 @@ import com.example.compositiongame.domain.entiteis.Level
 
 
 class GameFragment : Fragment() {
-
+    private val gameViewModelFactory by lazy {
+        GameViewModelFactory(level, requireActivity().application)
+    }
     private lateinit var level: Level
     private var _binding: FragmentGameBinding? = null
     private val binding: FragmentGameBinding
         get() = _binding ?: throw RuntimeException("FragmentGameBinding is null")
     private val viewModel: GameViewModel by lazy {
         ViewModelProvider(
-            this,
-            ViewModelProvider.AndroidViewModelFactory(requireActivity().application)
+            this, gameViewModelFactory
         )[GameViewModel::class.java]
     }
     private val tvOptionsList: MutableList<TextView> by lazy {
@@ -48,8 +49,7 @@ class GameFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         _binding = FragmentGameBinding.inflate(inflater, container, false)
         return binding.root
@@ -57,7 +57,6 @@ class GameFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.startGame(level)
         setViewModelObservers()
         setOnClickListeners()
 
@@ -83,24 +82,20 @@ class GameFragment : Fragment() {
                 question.observe(viewLifecycleOwner) {
                     tvVisibleNumber.text = it.visibleNumber.toString()
                     tvQuestionSum.text = it.sum.toString()
-                    for(optionIndex in 0 until tvOptionsList.size)
-                        tvOptionsList[optionIndex].text = it.options[optionIndex].toString()
+                    for (optionIndex in 0 until tvOptionsList.size) tvOptionsList[optionIndex].text =
+                        it.options[optionIndex].toString()
                 }
                 enoughRightAnswers.observe(viewLifecycleOwner) {
-                    if (it)
-                        tvCountRightAnswers.setTextColor(requireContext().getColor(R.color.green))
-                    else
-                        tvCountRightAnswers.setTextColor(requireContext().getColor(R.color.red))
+                    if (it) tvCountRightAnswers.setTextColor(requireContext().getColor(R.color.green))
+                    else tvCountRightAnswers.setTextColor(requireContext().getColor(R.color.red))
                 }
                 enoughPercent.observe(viewLifecycleOwner) {
-                    if (it)
-                        pbQuestion.progressTintList =
-                            ColorStateList.valueOf(requireContext().getColor(R.color.green))
-                    else
-                        pbQuestion.progressTintList =
-                            ColorStateList.valueOf(requireContext().getColor(R.color.red))
+                    if (it) pbQuestion.progressTintList =
+                        ColorStateList.valueOf(requireContext().getColor(R.color.green))
+                    else pbQuestion.progressTintList =
+                        ColorStateList.valueOf(requireContext().getColor(R.color.red))
                 }
-                gameResult.observe(viewLifecycleOwner){
+                gameResult.observe(viewLifecycleOwner) {
                     launchGameFinishedFragment(it)
                 }
             }
@@ -109,10 +104,9 @@ class GameFragment : Fragment() {
 
     private fun setOnClickListeners() {
         with(binding) {
-            for (optionIndex in 0 until tvOptionsList.size)
-                tvOptionsList[optionIndex].setOnClickListener {
-                    setOnOptionClick(it)
-                }
+            for (optionIndex in 0 until tvOptionsList.size) tvOptionsList[optionIndex].setOnClickListener {
+                setOnOptionClick(it)
+            }
         }
     }
 
@@ -126,12 +120,9 @@ class GameFragment : Fragment() {
     }
 
     private fun launchGameFinishedFragment(gameResult: GameResult) {
-        requireActivity().supportFragmentManager.beginTransaction()
-            .replace(
+        requireActivity().supportFragmentManager.beginTransaction().replace(
                 R.id.main_container, GameFinishedFragment.newInstance(gameResult)
-            )
-            .addToBackStack(null)
-            .commit()
+            ).addToBackStack(null).commit()
     }
 
 
