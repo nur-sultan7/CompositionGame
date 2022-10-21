@@ -1,10 +1,12 @@
 package com.example.compositiongame.domain.entiteis
 
-import java.io.Serializable
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class GameSettings(
     val gameTimeInSeconds: Int,
     val maxSumValue: Int,
     val minCountOfRightAnswers: Int,
     val minPercentOfRightAnswers: Int
-):Serializable
+):Parcelable

@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.navigation.fragment.findNavController
 import com.example.compositiongame.R
 import com.example.compositiongame.databinding.FragmentGameFinishedBinding
 import com.example.compositiongame.domain.entiteis.GameResult
@@ -31,15 +33,15 @@ class GameFinishedFragment : Fragment() {
         binding.btnRetry.setOnClickListener {
             restartGame()
         }
-        requireActivity().onBackPressedDispatcher
-            .addCallback(
-                viewLifecycleOwner,
-                object : OnBackPressedCallback(true) {
-                    override fun handleOnBackPressed() {
-                        restartGame()
-                    }
-                }
-            )
+//        requireActivity().onBackPressedDispatcher
+//            .addCallback(
+//                viewLifecycleOwner,
+//                object : OnBackPressedCallback(true) {
+//                    override fun handleOnBackPressed() {
+//                        restartGame()
+//                    }
+//                }
+//            )
         setGameResult()
     }
 
@@ -77,7 +79,7 @@ class GameFinishedFragment : Fragment() {
 
     @RequiresApi(33)
     private fun parseArgs() {
-        gameResult = requireArguments().getSerializable(KEY_GAME_RESULT) as GameResult
+        gameResult = requireArguments().getParcelable<GameResult>(KEY_GAME_RESULT) as GameResult
     }
 
     @RequiresApi(33)
@@ -87,19 +89,20 @@ class GameFinishedFragment : Fragment() {
     }
 
     private fun restartGame() {
-        requireActivity().supportFragmentManager
-            .popBackStack(
-                GameFragment.NAME,
-                1
-            )
+//        requireActivity().supportFragmentManager
+//            .popBackStack(
+//                GameFragment.NAME,
+//                FragmentManager.POP_BACK_STACK_INCLUSIVE
+//            )
+        findNavController().popBackStack()
     }
 
     companion object {
-        private const val KEY_GAME_RESULT = "game result"
+        const val KEY_GAME_RESULT = "game result"
         fun newInstance(gameResult: GameResult): GameFinishedFragment {
             return GameFinishedFragment().apply {
                 arguments = Bundle().apply {
-                    putSerializable(KEY_GAME_RESULT, gameResult)
+                    putParcelable(KEY_GAME_RESULT, gameResult)
                 }
             }
         }
