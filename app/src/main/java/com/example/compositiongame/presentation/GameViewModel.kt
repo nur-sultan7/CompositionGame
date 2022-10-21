@@ -2,7 +2,6 @@ package com.example.compositiongame.presentation
 
 import android.app.Application
 import android.os.CountDownTimer
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -65,7 +64,7 @@ class GameViewModel(private val level: Level, private val application: Applicati
     }
 
 
-    fun checkAnswer(answer: Int) {
+    fun chooseAnswer(answer: Int) {
         if (answer == _question.value?.rightAnswer)
             countOfRightAnswers++
         countOfAnswers++
